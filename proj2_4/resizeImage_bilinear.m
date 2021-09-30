@@ -15,15 +15,11 @@ function resizedImage = resizeImage_bilinear(originalImage, scalingFactor)
             j_f = floor(j_r);
             a = i_r - i_f;
             b = j_r - j_f;
-            if floor(i_r) ~= i_r || floor(j_r) ~= j_r
-                fxy = originalImage(i_f,j_f);
-                fxy_d = originalImage(i_f, min(N,j_f + 1));
-                fxy_r = originalImage(min(M,i_f + 1),j_f);
-                fxy_dr = originalImage(min(M,i_f + 1),min(N,j_f + 1));
-                resizedImage(i,j) = (1-a)*((1-b)*fxy + b*fxy_d) + a*((1-b)*fxy_r + b * fxy_dr);
-            else
-                resizedImage(i,j) = originalImage(i_r, j_r);
-            end
+            fxy = originalImage(i_f,j_f);
+            fxy_d = originalImage(i_f, min(N,j_f + 1));
+            fxy_r = originalImage(min(M,i_f + 1),j_f);
+            fxy_dr = originalImage(min(M,i_f + 1),min(N,j_f + 1));
+            resizedImage(i,j) = (1-a)*((1-b)*fxy + b*fxy_d) + a*((1-b)*fxy_r + b * fxy_dr);
         end   
     end
 end
